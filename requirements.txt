@@ -1,0 +1,3 @@
+psutil
+rich
+simple-term-menu

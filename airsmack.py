@@ -409,6 +409,9 @@ def main():
                 client = clients.split(' ')[0].rstrip("'']")
                 # print(client)
 
+                # Exit-flag to track inner loop exit.
+                exit_nested = False
+
                 # Sub-menu
                 if len(clients_lst) > 1:
                     while True:
@@ -417,6 +420,7 @@ def main():
                             logging.debug(f"Selected Client: {selected_client_menu_item}")
                             # Back option.
                             if selected_client_menu_item == '[-] Back':
+                                exit_nested = True
                                 break
                             # Exit option.
                             elif selected_client_menu_item == '[-] Exit':
@@ -427,6 +431,12 @@ def main():
                             else:
                                 client = selected_client_menu_item.strip()
                                 break
+                
+                # Check exit-flag to determine loop direction.
+                if exit_nested:
+                    continue
+                else:
+                    pass
 
                 # Print - Target Selected
                 r.console.print(r.Panel(r.Syntax(
